@@ -54,7 +54,7 @@ setup(
             'fastapi',
             'uvicorn',
             'weaviate-client~=3.3.0',
-            'pqlite>=0.2.1',
+            'annlite>=0.2.5',
             'qdrant-client~=0.5.0',
             'strawberry-graphql',
         ],
@@ -81,7 +81,7 @@ setup(
             'jupyterlab',
             'transformers==4.16.2',
             'weaviate-client~=3.3.0',
-            'pqlite>=0.2.4',
+            'annlite>=0.2.5',
         ],
     },
     classifiers=[

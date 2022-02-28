@@ -13,7 +13,7 @@ class GetSetDelMixin(BaseGetSetDelMixin):
     # essential methods start
 
     def _get_doc_by_id(self, _id: str) -> 'Document':
-        doc = self._pqlite.get_doc_by_id(_id)
+        doc = self._annlite.get_doc_by_id(_id)
         if doc is None:
             raise KeyError(f'Can not find Document with id=`{_id}`')
         return doc
@@ -21,22 +21,22 @@ class GetSetDelMixin(BaseGetSetDelMixin):
     def _set_doc_by_id(self, _id: str, value: 'Document'):
         self._to_numpy_embedding(value)
         docs = DocumentArrayInMemory([value])
-        self._pqlite.update(docs)
+        self._annlite.update(docs)
 
     def _del_doc_by_id(self, _id: str):
-        self._pqlite.delete([_id])
+        self._annlite.delete([_id])
 
     def _clear_storage(self):
-        self._pqlite.clear()
+        self._annlite.clear()
 
     def _set_docs_by_ids(self, ids, docs: Iterable['Document']):
         docs = DocumentArrayInMemory(docs)
         for doc in docs:
             self._to_numpy_embedding(doc)
-        self._pqlite.update(docs)
+        self._annlite.update(docs)
 
     def _del_docs_by_ids(self, ids):
-        self._pqlite.delete(ids)
+        self._annlite.delete(ids)
 
     def _load_offset2ids(self):
         self._offsetmapping = OffsetMapping(
